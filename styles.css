@@ -968,6 +968,7 @@ section {
 .product-text {
     color: var(--text-muted);
     line-height: 1.9;
+    text-align: justify;
 }
 
 .product-text p {
@@ -1035,6 +1036,7 @@ section {
     font-size: 0.95rem;
     color: var(--text-muted);
     line-height: 1.7;
+    text-align: justify;
 }
 
 .pipeline-info p strong {
@@ -1323,10 +1325,18 @@ section {
 .map-container {
     width: 100%;
     height: 360px;
+    line-height: 0;
     border-radius: var(--radius-md);
     overflow: hidden;
     border: 1px solid var(--border-light);
     background: var(--bg-card);
+}
+
+.map-container iframe {
+    width: 100%;
+    height: 100%;
+    display: block;
+    border: none;
 }
 
 .map-card {

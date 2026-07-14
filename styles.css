@@ -168,6 +168,50 @@ body {
     background: rgba(74, 144, 217, 0.15);
 }
 
+/* 下拉菜单 */
+.nav-dropdown {
+    position: relative;
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%) translateY(4px);
+    background: rgba(10, 22, 40, 0.96);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 8px 0;
+    min-width: 140px;
+    list-style: none;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    z-index: 1001;
+}
+
+.nav-dropdown:hover .dropdown-menu {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateX(-50%) translateY(0);
+}
+
+.dropdown-menu li a {
+    display: block;
+    padding: 8px 20px;
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 0.85rem;
+    transition: var(--transition);
+    white-space: nowrap;
+}
+
+.dropdown-menu li a:hover {
+    color: var(--text);
+    background: rgba(74, 144, 217, 0.15);
+}
+
 .nav-toggle {
     display: none;
     flex-direction: column;
@@ -687,6 +731,66 @@ section {
     line-height: 1.5;
 }
 
+/* ========== 最新动态 ========== */
+.news-section {
+    margin-top: 80px;
+    padding-top: 60px;
+    border-top: 1px solid var(--border-light);
+}
+
+.news-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+}
+
+.news-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-md);
+    padding: 28px 24px;
+    transition: var(--transition);
+}
+
+.news-card:hover {
+    border-color: rgba(0, 201, 167, 0.3);
+    box-shadow: var(--shadow-glow);
+    transform: translateY(-4px);
+}
+
+.news-date {
+    font-size: 0.8rem;
+    color: var(--accent);
+    font-weight: 500;
+    margin-bottom: 12px;
+}
+
+.news-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 10px;
+}
+
+.news-desc {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+    .news-section {
+        margin-top: 50px;
+        padding-top: 40px;
+    }
+
+    .news-grid {
+        grid-template-columns: 1fr;
+        max-width: 400px;
+        margin: 0 auto;
+    }
+}
+
 /* ========== 产品管线 ========== */
 .products {
     background: linear-gradient(180deg, var(--bg-dark) 0%, #080f1a 100%);
@@ -848,7 +952,6 @@ section {
     font-weight: 500;
     color: var(--accent);
     margin-bottom: 10px;
-    font-family: 'SF Mono', 'Fira Code', monospace;
 }
 
 .pipeline-info p {
@@ -1327,6 +1430,22 @@ section {
     .nav-link {
         padding: 12px 16px;
         font-size: 1rem;
+    }
+
+    /* 移动端下拉菜单 */
+    .dropdown-menu {
+        position: static;
+        transform: none;
+        background: transparent;
+        border: none;
+        padding: 0 0 0 16px;
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+    .dropdown-menu li a {
+        padding: 8px 16px;
+        font-size: 0.9rem;
     }
 
     /* Hero */

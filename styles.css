@@ -70,7 +70,7 @@ body {
     background: rgba(10, 22, 40, 0.92);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
-    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.3), 0 1px 0 rgba(0, 201, 167, 0.15);
     border-bottom: 1px solid var(--border);
     padding: 10px 0;
 }
@@ -306,6 +306,7 @@ body {
     color: var(--accent);
     letter-spacing: 2px;
     margin-bottom: 16px;
+    animation: fadeInUp 0.6s ease-out both;
 }
 
 .hero-headline {
@@ -314,6 +315,8 @@ body {
     line-height: 1.45;
     color: var(--text);
     margin-bottom: 24px;
+    text-align: justify;
+    animation: fadeInUp 0.7s ease-out 0.1s both;
 }
 
 .hero-features {
@@ -322,6 +325,12 @@ body {
     font-weight: 300;
     margin-bottom: 40px;
     line-height: 1.6;
+    animation: fadeInUp 0.7s ease-out 0.2s both;
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
 .hero-right {
@@ -334,6 +343,13 @@ body {
     height: auto;
     display: block;
     border-radius: var(--radius-md);
+    filter: drop-shadow(0 8px 24px rgba(0, 201, 167, 0.1));
+    transition: filter 0.4s ease, transform 0.4s ease;
+}
+
+.hero-right:hover .hero-img {
+    filter: drop-shadow(0 12px 36px rgba(0, 201, 167, 0.18));
+    transform: scale(1.03);
 }
 
 .hero-cta {
@@ -349,6 +365,17 @@ body {
     border-radius: 50px;
     transition: var(--transition);
     box-shadow: 0 4px 20px rgba(0, 201, 167, 0.3);
+    position: relative;
+    overflow: hidden;
+    animation: fadeInUp 0.8s ease-out 0.3s both;
+}
+
+.hero-cta::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(255,255,255,0.2) 0%, transparent 50%);
+    pointer-events: none;
 }
 
 .hero-cta:hover {
@@ -432,7 +459,7 @@ section {
     border-radius: var(--radius-lg);
     padding: 40px 32px;
     text-align: center;
-    transition: var(--transition);
+    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
     position: relative;
     overflow: hidden;
 }
@@ -450,14 +477,32 @@ section {
     transition: transform 0.4s ease;
 }
 
+.service-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 50% 0%, rgba(0,201,167,0.06) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
 .service-card:hover {
-    transform: translateY(-8px);
+    transform: translateY(-6px);
     border-color: rgba(0, 201, 167, 0.4);
-    box-shadow: var(--shadow-glow);
+    box-shadow: 0 12px 40px rgba(0, 201, 167, 0.1);
 }
 
 .service-card:hover::before {
     transform: scaleX(1);
+}
+
+.service-card:hover::after {
+    opacity: 1;
+}
+
+.service-card:hover .service-icon {
+    color: var(--accent-light);
+    transform: scale(1.05);
 }
 
 .service-icon {
@@ -465,11 +510,7 @@ section {
     height: 72px;
     margin: 0 auto 24px;
     color: var(--accent);
-    transition: var(--transition);
-}
-
-.service-card:hover .service-icon {
-    color: var(--accent-light);
+    transition: transform 0.3s ease, color 0.3s ease;
 }
 
 .service-icon svg {
@@ -580,7 +621,7 @@ section {
 
 .about-content {
     display: grid;
-    grid-template-columns: 1.2fr 0.8fr;
+    grid-template-columns: 1fr 1fr;
     gap: 60px;
     align-items: start;
 }
@@ -624,10 +665,16 @@ section {
 .about-img-placeholder svg,
 .about-img {
     width: 100%;
-    max-width: 380px;
     height: auto;
     display: block;
     border-radius: var(--radius-md);
+    filter: drop-shadow(0 6px 20px rgba(0, 201, 167, 0.1));
+    transition: filter 0.4s ease, transform 0.4s ease;
+}
+
+.about-image:hover .about-img {
+    filter: drop-shadow(0 10px 30px rgba(0, 201, 167, 0.18));
+    transform: scale(1.03);
 }
 
 .stat-item {
@@ -2096,4 +2143,136 @@ section {
 .wechat-popup-hint {
     font-size: 0.85rem;
     color: var(--text-muted);
+}
+
+/* ========== 视觉增强 ========== */
+
+/* 服务图标悬停脉冲 */
+.service-icon {
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+.service-card:hover .service-icon {
+    transform: scale(1.08);
+}
+
+/* 优势卡片悬停提升 */
+.advantage-card {
+    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+}
+.advantage-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 32px rgba(0, 201, 167, 0.08);
+}
+
+/* 按钮按压反馈 */
+.hero-cta:active {
+    transform: scale(0.97);
+}
+
+/* 高亮数字卡片悬停 */
+.highlight-card {
+    transition: transform 0.3s ease, background 0.3s ease, border-color 0.3s ease;
+}
+.highlight-card:hover {
+    transform: translateY(-2px);
+}
+
+/* 新闻卡片悬停 */
+.news-card {
+    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+.news-card:hover {
+    transform: translateY(-3px);
+}
+
+/* 创始人卡片悬停 */
+.founder-card {
+    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* 段落期刊名渐变色 */
+em {
+    font-style: normal;
+    background: linear-gradient(135deg, var(--accent), var(--secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: 600;
+}
+
+/* 页面 Banner 底部渐变线 */
+.page-banner::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--gradient-accent);
+    opacity: 0.3;
+}
+
+/* 图片加载淡入 */
+.hero-img, .about-img {
+    animation: fadeIn 0.8s ease-out;
+}
+
+/* Section 标题渐变色 */
+.section-title {
+    background: linear-gradient(180deg, var(--text) 60%, var(--text-muted) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* 服务图标圆形背景 */
+.service-icon {
+    position: relative;
+}
+.service-icon::after {
+    content: '';
+    position: absolute;
+    inset: -8px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(0,201,167,0.08) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: -1;
+}
+.service-card:hover .service-icon::after {
+    opacity: 1;
+}
+
+/* 管道卡片左侧强调线 */
+.pipeline-card {
+    position: relative;
+}
+.pipeline-card::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 20px;
+    bottom: 20px;
+    width: 3px;
+    background: var(--gradient-accent);
+    border-radius: 0 2px 2px 0;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+.pipeline-card:hover::before {
+    opacity: 1;
+}
+
+/* 产品编号呼吸光 */
+.product-number {
+    animation: numberGlow 3s ease-in-out infinite;
+}
+@keyframes numberGlow {
+    0%, 100% { opacity: 0.7; }
+    50% { opacity: 1; }
+}
+
+/* 页脚渐入 */
+.footer {
+    animation: fadeIn 0.8s ease-out;
 }

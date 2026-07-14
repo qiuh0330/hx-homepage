@@ -282,7 +282,7 @@ body {
 
 .hero-right {
     flex: 0 0 auto;
-    width: clamp(280px, 32vw, 380px);
+    width: clamp(360px, 42vw, 540px);
 }
 
 .hero-img {
@@ -546,6 +546,7 @@ section {
     color: var(--text-muted);
     line-height: 1.9;
     margin-bottom: 16px;
+    text-align: justify;
 }
 
 .about-intro strong {
@@ -576,10 +577,13 @@ section {
     border: 1px solid var(--border-light);
 }
 
-.about-img-placeholder svg {
+.about-img-placeholder svg,
+.about-img {
     width: 100%;
+    max-width: 380px;
     height: auto;
     display: block;
+    border-radius: var(--radius-md);
 }
 
 .stat-item {
@@ -1225,7 +1229,7 @@ section {
     }
 
     .hero-right {
-        width: clamp(280px, 38vw, 400px);
+        width: clamp(300px, 40vw, 440px);
     }
 
     .services-grid {
@@ -1365,7 +1369,7 @@ section {
 
     .hero-right {
         width: 100%;
-        max-width: 380px;
+        max-width: 400px;
     }
 
     .hero-scroll-indicator {
@@ -1633,7 +1637,7 @@ section {
 
     .hero-right {
         width: 100%;
-        max-width: 320px;
+        max-width: 340px;
     }
 
     .service-card {

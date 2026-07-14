@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
     injectSearchOverlay();
     injectWechatPopup();
     initScrollSpy();
+    initProductSidebar();
     initScrollAnimation();
     initParticles();
     initSmoothScroll();
@@ -419,5 +420,45 @@ function initWechatPopup() {
         if (e.key === 'Escape' && popup.classList.contains('active')) {
             closePopup();
         }
+    });
+}
+// ========== 页面圆点导航滚动监听 ==========
+function initProductSidebar() {
+    var dots = document.querySelectorAll('.dot-link');
+    if (!dots.length) return;
+
+    // 根据所有dot-link的href收集对应的目标区块
+    var targets = [];
+    dots.forEach(function(d) {
+        var id = d.getAttribute('href').replace('#', '');
+        var el = document.getElementById(id);
+        if (el) targets.push({ id: id, el: el, dot: d });
+    });
+    if (!targets.length) return;
+
+    window.addEventListener('scroll', function() {
+        var scrollY = window.scrollY + window.innerHeight / 3;
+        var current = '';
+        targets.forEach(function(t) {
+            var top = t.el.offsetTop;
+            if (scrollY >= top) {
+                current = t.id;
+            }
+        });
+        dots.forEach(function(d) { d.classList.remove('active'); });
+        targets.forEach(function(t) {
+            if (t.id === current) t.dot.classList.add('active');
+        });
+    });
+
+    // 点击圆点平滑滚动
+    dots.forEach(function(d) {
+        d.addEventListener('click', function(e) {
+            e.preventDefault();
+            var target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({ behavior: 'smooth' });
+            }
+        });
     });
 }

@@ -5,8 +5,7 @@
 
 // ========== 初始化 ==========
 document.addEventListener('DOMContentLoaded', () => {
-    injectNavbar();
-    injectFooter();
+    injectComponents();
     injectSearchOverlay();
     injectWechatPopup();
     initScrollSpy();
@@ -15,39 +14,61 @@ document.addEventListener('DOMContentLoaded', () => {
     initSmoothScroll();
 });
 
-// ========== 注入导航栏（从 navbar.html 加载） ==========
-function injectNavbar() {
-    const placeholder = document.getElementById('navbar-placeholder');
-    if (!placeholder) return;
+// ========== 注入共享组件 ==========
+function injectComponents() {
+    let navbarDone = false;
+    let footerDone = false;
 
-    const page = document.body.getAttribute('data-page');
-
-    fetch('navbar.html')
-        .then(r => r.text())
-        .then(html => {
-            placeholder.outerHTML = html;
-            if (page && page !== 'index') {
-                const navbar = document.getElementById('navbar');
-                if (navbar) navbar.classList.add('scrolled');
+    function tryScrollToHash() {
+        if (navbarDone && footerDone && window.location.hash) {
+            const target = document.querySelector(window.location.hash);
+            if (target) {
+                setTimeout(() => {
+                    const nav = document.getElementById('navbar');
+                    const offset = nav ? nav.offsetHeight + 20 : 80;
+                    window.scrollTo({ top: target.offsetTop - offset, behavior: 'instant' });
+                }, 100);
             }
-            highlightCurrentPage();
-            initNavbar();
-            initMobileMenu();
-            initSearchOverlay();
-            initWechatPopup();
-        });
-}
+        }
+    }
 
-// ========== 注入页脚（从 footer.html 加载） ==========
-function injectFooter() {
-    const placeholder = document.getElementById('footer-placeholder');
-    if (!placeholder) return;
+    // 导航栏
+    const navPlaceholder = document.getElementById('navbar-placeholder');
+    if (navPlaceholder) {
+        const page = document.body.getAttribute('data-page');
+        fetch('navbar.html')
+            .then(r => r.text())
+            .then(html => {
+                navPlaceholder.outerHTML = html;
+                if (page && page !== 'index') {
+                    const navbar = document.getElementById('navbar');
+                    if (navbar) navbar.classList.add('scrolled');
+                }
+                highlightCurrentPage();
+                initNavbar();
+                initMobileMenu();
+                initSearchOverlay();
+                initWechatPopup();
+                navbarDone = true;
+                tryScrollToHash();
+            });
+    } else {
+        navbarDone = true;
+    }
 
-    fetch('footer.html')
-        .then(r => r.text())
-        .then(html => {
-            placeholder.outerHTML = html;
-        });
+    // 页脚
+    const footerPlaceholder = document.getElementById('footer-placeholder');
+    if (footerPlaceholder) {
+        fetch('footer.html')
+            .then(r => r.text())
+            .then(html => {
+                footerPlaceholder.outerHTML = html;
+                footerDone = true;
+                tryScrollToHash();
+            });
+    } else {
+        footerDone = true;
+    }
 }
 
 // ========== 当前页面高亮 ==========

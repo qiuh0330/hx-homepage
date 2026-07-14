@@ -37,6 +37,7 @@
 
 html {
     scroll-behavior: smooth;
+    scroll-padding-top: 80px;
 }
 
 body {
@@ -256,7 +257,7 @@ body {
 }
 
 .hero-company {
-    font-size: 1.5rem;
+    font-size: 1.25rem;
     font-weight: 500;
     color: var(--accent);
     letter-spacing: 2px;
@@ -264,7 +265,7 @@ body {
 }
 
 .hero-headline {
-    font-size: clamp(1.8rem, 4vw, 3rem);
+    font-size: clamp(1.6rem, 3.5vw, 2.5rem);
     font-weight: 700;
     line-height: 1.45;
     color: var(--text);
@@ -281,17 +282,14 @@ body {
 
 .hero-right {
     flex: 0 0 auto;
-    width: clamp(320px, 40vw, 480px);
+    width: clamp(280px, 32vw, 380px);
 }
 
-.hero-placeholder {
-    width: 100%;
-}
-
-.hero-placeholder svg {
+.hero-img {
     width: 100%;
     height: auto;
     display: block;
+    border-radius: var(--radius-md);
 }
 
 .hero-cta {
@@ -528,6 +526,7 @@ section {
     line-height: 1.7;
     grid-column: 2;
     grid-row: 2;
+    text-align: justify;
 }
 
 /* ========== 关于我们 ========== */
@@ -1213,12 +1212,20 @@ section {
 
 /* ========== 响应式 ========== */
 @media (max-width: 1024px) {
+    .container {
+        padding: 0 32px;
+    }
+
     .hero-content {
         gap: 40px;
     }
 
+    .hero-left {
+        max-width: 100%;
+    }
+
     .hero-right {
-        width: clamp(260px, 35vw, 360px);
+        width: clamp(280px, 38vw, 400px);
     }
 
     .services-grid {
@@ -1231,43 +1238,57 @@ section {
         justify-self: center;
     }
 
+    .advantages-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
     .about-content {
         grid-template-columns: 1fr;
         gap: 40px;
     }
 
-    .about-stats {
-        grid-template-columns: repeat(4, 1fr);
+    .contact-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 32px;
+    }
+
+    .footer-links {
+        gap: 40px;
+    }
+
+    .nav-container {
+        padding: 0 32px;
     }
 }
 
 @media (max-width: 768px) {
     section {
-        padding: 70px 0;
+        padding: 60px 0;
     }
 
-    .hero-content {
-        flex-direction: column;
-        text-align: center;
-        padding: 80px 24px 40px;
-        gap: 40px;
+    .container {
+        padding: 0 20px;
     }
 
-    .hero-left {
-        max-width: 100%;
+    .section-header {
+        margin-bottom: 40px;
     }
 
-    .hero-headline {
-        font-size: clamp(1.4rem, 5vw, 1.8rem);
+    .section-title {
+        font-size: clamp(1.5rem, 5vw, 2rem);
     }
 
-    .hero-cta {
-        margin: 0 auto;
+    .section-desc {
+        font-size: 0.95rem;
     }
 
-    .hero-right {
-        width: 100%;
-        max-width: 360px;
+    /* 导航栏 */
+    .nav-container {
+        padding: 0 20px;
+    }
+
+    .logo-img {
+        height: 40px;
     }
 
     .nav-toggle {
@@ -1286,11 +1307,13 @@ section {
         height: 100vh;
         background: rgba(10, 22, 40, 0.98);
         backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
         flex-direction: column;
         padding: 80px 32px 32px;
         gap: 4px;
         transition: right 0.3s ease;
         border-left: 1px solid var(--border);
+        z-index: 999;
     }
 
     .nav-menu.active {
@@ -1302,8 +1325,57 @@ section {
         font-size: 1rem;
     }
 
+    /* Hero */
+    .hero {
+        min-height: auto;
+        padding-top: 100px;
+        padding-bottom: 60px;
+    }
+
+    .hero-content {
+        flex-direction: column;
+        text-align: center;
+        padding: 60px 20px 40px;
+        gap: 32px;
+    }
+
+    .hero-left {
+        max-width: 100%;
+    }
+
+    .hero-company {
+        font-size: 1rem;
+    }
+
+    .hero-headline {
+        font-size: clamp(1.2rem, 5vw, 1.6rem);
+        margin-bottom: 16px;
+    }
+
+    .hero-features {
+        font-size: 0.85rem;
+        margin-bottom: 28px;
+    }
+
+    .hero-cta {
+        margin: 0 auto;
+        padding: 12px 28px;
+        font-size: 0.9rem;
+    }
+
+    .hero-right {
+        width: 100%;
+        max-width: 380px;
+    }
+
+    .hero-scroll-indicator {
+        display: none;
+    }
+
+    /* 服务卡片 */
     .services-grid {
         grid-template-columns: 1fr;
+        gap: 20px;
     }
 
     .services-grid .service-card:nth-child(3) {
@@ -1312,12 +1384,60 @@ section {
         justify-self: auto;
     }
 
-    .advantages-grid {
-        grid-template-columns: 1fr;
+    .service-card {
+        padding: 28px 24px;
     }
 
-    .about-stats {
-        grid-template-columns: repeat(2, 1fr);
+    .service-title {
+        font-size: 1.15rem;
+    }
+
+    .service-desc {
+        font-size: 0.9rem;
+    }
+
+    /* 优势卡片 */
+    .advantages-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .advantage-card {
+        padding: 28px 24px;
+        gap: 6px 16px;
+    }
+
+    .advantage-title {
+        font-size: 1.05rem;
+    }
+
+    .advantage-desc {
+        font-size: 0.9rem;
+    }
+
+    .advantage-number {
+        font-size: 2rem;
+        top: 12px;
+        right: 16px;
+    }
+
+    /* 关于我们 */
+    .about-page {
+        padding: 50px 0 70px;
+    }
+
+    .about-content {
+        grid-template-columns: 1fr;
+        gap: 32px;
+    }
+
+    .about-intro {
+        font-size: 0.95rem;
+    }
+
+    .founders-section {
+        margin-top: 50px;
+        padding-top: 40px;
     }
 
     .founders-grid {
@@ -1326,44 +1446,265 @@ section {
         margin: 0 auto;
     }
 
+    .subsection-title {
+        font-size: 1.3rem;
+        margin-bottom: 32px;
+    }
+
+    /* 页面 Banner */
+    .page-banner {
+        min-height: 160px;
+        padding-bottom: 24px;
+    }
+
+    .page-banner-title {
+        font-size: clamp(1.3rem, 4vw, 1.8rem);
+    }
+
+    .page-banner-subtitle {
+        font-size: 0.9rem;
+    }
+
+    /* 产品管线 */
+    .products-page {
+        padding: 50px 0 70px;
+    }
+
+    .product-block {
+        margin-bottom: 32px;
+    }
+
+    .product-header {
+        padding: 20px 24px;
+        gap: 10px;
+    }
+
+    .product-number {
+        font-size: 1.5rem;
+    }
+
+    .product-title {
+        font-size: 1.2rem;
+    }
+
+    .product-body {
+        padding: 24px;
+    }
+
     .product-highlight {
         flex-direction: column;
+        gap: 12px;
+        margin-bottom: 24px;
+    }
+
+    .highlight-card {
+        padding: 18px;
+    }
+
+    .highlight-value {
+        font-size: 1.4rem;
     }
 
     .pipeline-card {
         flex-direction: column;
+        gap: 12px;
+        padding: 20px;
     }
 
-    .footer-content {
-        flex-direction: column;
-        gap: 32px;
+    .pipeline-info h4 {
+        font-size: 1rem;
     }
 
-    .footer-links {
-        gap: 32px;
+    .pipeline-info p {
+        font-size: 0.9rem;
+    }
+
+    .product-badge {
+        font-size: 0.7rem;
+        padding: 4px 10px;
     }
 
     .product-header {
         flex-wrap: wrap;
     }
+
+    /* 联系我们 */
+    .contact-page {
+        padding: 50px 0 70px;
+    }
+
+    .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 28px;
+    }
+
+    .contact-card-item {
+        padding: 20px;
+    }
+
+    .map-container {
+        height: 260px;
+    }
+
+    /* 页脚 */
+    .footer {
+        padding: 40px 0 20px;
+    }
+
+    .footer-content {
+        flex-direction: column;
+        gap: 28px;
+        margin-bottom: 28px;
+    }
+
+    .footer-brand {
+        max-width: 100%;
+        text-align: center;
+    }
+
+    .footer-logo-img {
+        height: 48px;
+    }
+
+    .footer-links {
+        gap: 32px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    /* 搜索 */
+    .search-overlay {
+        padding-top: 10vh;
+    }
+
+    .search-dialog {
+        max-width: 100%;
+        margin: 0 16px;
+    }
+
+    /* 微信弹窗 */
+    .wechat-popup-card {
+        padding: 32px 24px;
+    }
+
+    .wechat-qr-placeholder {
+        width: 160px;
+        height: 160px;
+    }
 }
 
 @media (max-width: 480px) {
+    section {
+        padding: 40px 0;
+    }
+
+    .container {
+        padding: 0 16px;
+    }
+
+    .section-header {
+        margin-bottom: 32px;
+    }
+
+    .section-tag {
+        font-size: 0.7rem;
+        letter-spacing: 2px;
+    }
+
+    .section-title {
+        font-size: 1.4rem;
+    }
+
+    .nav-container {
+        padding: 0 16px;
+    }
+
+    .logo-img {
+        height: 32px;
+    }
+
     .hero-content {
-        padding: 60px 16px 30px;
+        padding: 50px 16px 30px;
     }
 
     .hero-headline {
-        font-size: 1.3rem;
+        font-size: 1.15rem;
     }
 
-    .about-stats {
-        grid-template-columns: 1fr 1fr;
+    .hero-right {
+        width: 100%;
+        max-width: 320px;
+    }
+
+    .service-card {
+        padding: 24px 20px;
+    }
+
+    .advantage-card {
+        padding: 24px 20px;
+        grid-template-columns: 40px 1fr;
+        gap: 4px 12px;
+    }
+
+    .advantage-icon {
+        width: 40px;
+        height: 40px;
+    }
+
+    .founders-section {
+        margin-top: 40px;
+        padding-top: 32px;
+    }
+
+    .product-header {
+        padding: 16px 20px;
+    }
+
+    .product-body {
+        padding: 20px;
+    }
+
+    .contact-card-item {
+        padding: 16px 20px;
+        gap: 14px;
+    }
+
+    .contact-value {
+        font-size: 0.95rem;
+    }
+
+    .map-container {
+        height: 220px;
     }
 
     .footer-links {
         flex-direction: column;
-        gap: 24px;
+        align-items: center;
+        text-align: center;
+        gap: 20px;
+    }
+
+    .footer-col ul {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .footer-contact-list li {
+        justify-content: center;
+    }
+
+    .footer-logo-img {
+        height: 40px;
+    }
+
+    .page-banner {
+        min-height: 130px;
+        padding-bottom: 20px;
+    }
+
+    .page-banner-content {
+        padding: 0 16px;
     }
 }
 

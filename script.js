@@ -3,6 +3,21 @@
  * 导航栏和页脚请分别编辑 navbar.html 和 footer.html
  */
 
+// ========== 基础路径检测 ==========
+var BASE_PATH = (function() {
+    var path = window.location.pathname;
+    // localhost or domain root
+    if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+        return '/';
+    }
+    // GitHub Pages: path is /reponame/... → get repo name
+    var parts = path.split('/').filter(Boolean);
+    if (parts.length > 0) {
+        return '/' + parts[0] + '/';
+    }
+    return '/';
+})();
+
 // ========== 初始化 ==========
 document.addEventListener('DOMContentLoaded', () => {
     injectComponents();
@@ -16,6 +31,24 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // ========== 注入共享组件 ==========
+function fixRelativePaths(container) {
+    if (!container) return;
+    // Fix image src
+    container.querySelectorAll('img[src]').forEach(function(img) {
+        var src = img.getAttribute('src');
+        if (src && !src.startsWith('http') && !src.startsWith('/') && !src.startsWith('data:')) {
+            img.setAttribute('src', BASE_PATH + src);
+        }
+    });
+    // Fix anchor href
+    container.querySelectorAll('a[href]').forEach(function(a) {
+        var href = a.getAttribute('href');
+        if (href && !href.startsWith('http') && !href.startsWith('#') && !href.startsWith('/') && !href.startsWith('javascript:')) {
+            a.setAttribute('href', BASE_PATH + href);
+        }
+    });
+}
+
 function injectComponents() {
     let navbarDone = false;
     let footerDone = false;
@@ -37,10 +70,13 @@ function injectComponents() {
     const navPlaceholder = document.getElementById('navbar-placeholder');
     if (navPlaceholder) {
         const page = document.body.getAttribute('data-page');
-        fetch('/navbar.html')
+        fetch(BASE_PATH + 'navbar.html')
             .then(r => r.text())
             .then(html => {
-                navPlaceholder.outerHTML = html;
+                var temp = document.createElement('div');
+                temp.innerHTML = html;
+                fixRelativePaths(temp);
+                navPlaceholder.outerHTML = temp.innerHTML;
                 if (page && page !== 'index') {
                     const navbar = document.getElementById('navbar');
                     if (navbar) navbar.classList.add('scrolled');
@@ -60,10 +96,13 @@ function injectComponents() {
     // 页脚
     const footerPlaceholder = document.getElementById('footer-placeholder');
     if (footerPlaceholder) {
-        fetch('/footer.html')
+        fetch(BASE_PATH + 'footer.html')
             .then(r => r.text())
             .then(html => {
-                footerPlaceholder.outerHTML = html;
+                var temp = document.createElement('div');
+                temp.innerHTML = html;
+                fixRelativePaths(temp);
+                footerPlaceholder.outerHTML = temp.innerHTML;
                 footerDone = true;
                 tryScrollToHash();
             });

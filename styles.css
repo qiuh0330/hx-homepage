@@ -841,6 +841,9 @@ section {
     border-radius: var(--radius-md);
     padding: 28px 24px;
     transition: var(--transition);
+    text-decoration: none;
+    display: block;
+    color: inherit;
 }
 
 .news-card:hover {
@@ -867,6 +870,33 @@ section {
     font-size: 0.9rem;
     color: var(--text-muted);
     line-height: 1.6;
+    text-align: justify;
+}
+
+/* 查看更多动态 */
+.news-more {
+    text-align: center;
+    margin-top: 40px;
+}
+
+.news-more-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 32px;
+    border: 1px solid rgba(0, 201, 167, 0.3);
+    border-radius: 50px;
+    color: var(--accent);
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 500;
+    transition: var(--transition);
+}
+
+.news-more-link:hover {
+    background: rgba(0, 201, 167, 0.08);
+    border-color: rgba(0, 201, 167, 0.6);
+    transform: translateY(-2px);
 }
 
 @media (max-width: 768px) {

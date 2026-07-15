@@ -37,7 +37,7 @@ function injectComponents() {
     const navPlaceholder = document.getElementById('navbar-placeholder');
     if (navPlaceholder) {
         const page = document.body.getAttribute('data-page');
-        fetch('navbar.html')
+        fetch('/navbar.html')
             .then(r => r.text())
             .then(html => {
                 navPlaceholder.outerHTML = html;
@@ -60,7 +60,7 @@ function injectComponents() {
     // 页脚
     const footerPlaceholder = document.getElementById('footer-placeholder');
     if (footerPlaceholder) {
-        fetch('footer.html')
+        fetch('/footer.html')
             .then(r => r.text())
             .then(html => {
                 footerPlaceholder.outerHTML = html;

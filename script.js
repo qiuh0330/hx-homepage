@@ -440,7 +440,7 @@ function initProductSidebar() {
         var scrollY = window.scrollY + window.innerHeight / 3;
         var current = '';
         targets.forEach(function(t) {
-            var top = t.el.offsetTop;
+            var top = t.el.getBoundingClientRect().top + window.scrollY;
             if (scrollY >= top) {
                 current = t.id;
             }

@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" fill="none">
+  <defs>
+    <linearGradient id="g3" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#ce93d8" stop-opacity="0.12"/>
+      <stop offset="100%" stop-color="#ce93d8" stop-opacity="0.02"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="300" rx="12" fill="url(#g3)" stroke="#ce93d8" stroke-width="0.5" stroke-opacity="0.2"/>
+  <!-- mRNA单链 -->
+  <g transform="translate(200,140)" stroke="#ce93d8" fill="none" opacity="0.8">
+    <!-- mRNA主链 -->
+    <path d="M-130,0 C-100,-30 -70,30 -40,0 C-10,-30 20,30 50,0 C80,-30 100,30 130,0" stroke-width="3"/>
+    <!-- 核糖体 -->
+    <circle cx="-90" cy="-15" r="6" fill="#ce93d8" opacity="0.4" stroke="none"/>
+    <circle cx="-60" cy="-15" r="6" fill="#ce93d8" opacity="0.4" stroke="none"/>
+    <circle cx="-30" cy="-15" r="6" fill="#ce93d8" opacity="0.4" stroke="none"/>
+    <circle cx="0" cy="-15" r="6" fill="#ce93d8" opacity="0.4" stroke="none"/>
+    <circle cx="30" cy="-15" r="6" fill="#ce93d8" opacity="0.4" stroke="none"/>
+    <circle cx="60" cy="-15" r="6" fill="#ce93d8" opacity="0.4" stroke="none"/>
+    <circle cx="90" cy="-15" r="6" fill="#ce93d8" opacity="0.4" stroke="none"/>
+    <!-- 蛋白链 -->
+    <path d="M-90,-21 C-85,-50 -75,-60 -70,-50" stroke-width="1.5" opacity="0.5"/>
+    <path d="M-60,-21 C-55,-55 -45,-65 -40,-55" stroke-width="1.5" opacity="0.5"/>
+    <path d="M-30,-21 C-25,-45 -15,-55 -10,-45" stroke-width="1.5" opacity="0.5"/>
+    <path d="M0,-21 C5,-50 15,-60 20,-50" stroke-width="1.5" opacity="0.5"/>
+    <path d="M30,-21 C35,-48 45,-58 50,-48" stroke-width="1.5" opacity="0.5"/>
+    <path d="M60,-21 C65,-52 75,-62 80,-52" stroke-width="1.5" opacity="0.5"/>
+    <path d="M90,-21 C95,-50 105,-60 110,-50" stroke-width="1.5" opacity="0.5"/>
+    <!-- 5' -->
+    <text x="-140" y="12" fill="#ce93d8" font-size="10" font-family="sans-serif" opacity="0.6">5'</text>
+    <!-- 3' -->
+    <text x="132" y="12" fill="#ce93d8" font-size="10" font-family="sans-serif" opacity="0.6">3'</text>
+  </g>
+  <text x="200" y="270" text-anchor="middle" fill="#ce93d8" font-size="12" font-family="sans-serif" opacity="0.5">治疗型mRNA制剂 · 占位图</text>
+</svg>

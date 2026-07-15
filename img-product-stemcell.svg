@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" fill="none">
+  <defs>
+    <linearGradient id="g2" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#4fc3f7" stop-opacity="0.12"/>
+      <stop offset="100%" stop-color="#4fc3f7" stop-opacity="0.02"/>
+    </linearGradient>
+    <radialGradient id="cellGrad" cx="0.4" cy="0.35">
+      <stop offset="0%" stop-color="#4fc3f7" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#4fc3f7" stop-opacity="0.05"/>
+    </radialGradient>
+  </defs>
+  <rect width="400" height="300" rx="12" fill="url(#g2)" stroke="#4fc3f7" stroke-width="0.5" stroke-opacity="0.2"/>
+  <!-- 干细胞分裂图 -->
+  <g transform="translate(200,140)" stroke="#4fc3f7" fill="none">
+    <!-- 大细胞 -->
+    <circle cx="-60" cy="0" r="45" stroke-width="2" fill="url(#cellGrad)" opacity="0.7"/>
+    <circle cx="-60" cy="0" r="18" stroke-width="1.5" opacity="0.5"/>
+    <circle cx="-60" cy="0" r="8" fill="#4fc3f7" opacity="0.3"/>
+    <!-- 箭头 -->
+    <path d="M-10,-5 L15,-5" stroke-width="1.5" marker-end="url(#arrow)"/>
+    <path d="M-10,5 L15,5" stroke-width="1.5" marker-end="url(#arrow)"/>
+    <!-- 两个小细胞 -->
+    <circle cx="50" cy="-25" r="28" stroke-width="1.5" fill="url(#cellGrad)" opacity="0.6"/>
+    <circle cx="50" cy="-25" r="10" stroke-width="1" opacity="0.4"/>
+    <circle cx="50" cy="25" r="28" stroke-width="1.5" fill="url(#cellGrad)" opacity="0.6"/>
+    <circle cx="50" cy="25" r="10" stroke-width="1" opacity="0.4"/>
+    <!-- 微管/连接线 -->
+    <line x1="-15" y1="-15" x2="32" y2="-30" stroke-width="0.5" opacity="0.3" stroke-dasharray="3,3"/>
+    <line x1="-15" y1="15" x2="32" y2="30" stroke-width="0.5" opacity="0.3" stroke-dasharray="3,3"/>
+  </g>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 5" refX="8" refY="2.5" markerWidth="6" markerHeight="4" orient="auto">
+      <polygon points="0 0, 8 2.5, 0 5" fill="#4fc3f7"/>
+    </marker>
+  </defs>
+  <text x="200" y="270" text-anchor="middle" fill="#4fc3f7" font-size="12" font-family="sans-serif" opacity="0.5">干细胞治疗 · 占位图</text>
+</svg>

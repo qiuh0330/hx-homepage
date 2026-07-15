@@ -778,6 +778,20 @@ section {
     margin: 0 auto 20px;
     color: var(--accent);
     opacity: 0.7;
+    position: relative;
+}
+
+.founder-avatar::after {
+    content: '';
+    position: absolute;
+    inset: -4px;
+    border-radius: 50%;
+    border: 2px solid rgba(0, 201, 167, 0.25);
+    transition: border-color 0.3s ease;
+}
+
+.founder-card:hover .founder-avatar::after {
+    border-color: rgba(0, 201, 167, 0.5);
 }
 
 .founder-avatar svg,
@@ -1353,6 +1367,14 @@ section {
     border-radius: 12px;
     color: var(--accent);
     flex-shrink: 0;
+    transition: var(--transition);
+}
+
+.contact-card-item:hover .contact-icon,
+.contact-item:hover .contact-icon {
+    background: rgba(0, 201, 167, 0.18);
+    box-shadow: 0 0 16px rgba(0, 201, 167, 0.15);
+    transform: scale(1.05);
 }
 
 .contact-detail {
@@ -1419,6 +1441,12 @@ section {
     overflow: hidden;
     border: 1px solid var(--border-light);
     background: var(--bg-card);
+    transition: var(--transition);
+}
+
+.map-container:hover {
+    border-color: rgba(0, 201, 167, 0.3);
+    box-shadow: 0 0 24px rgba(0, 201, 167, 0.08);
 }
 
 .map-container iframe {
@@ -1501,7 +1529,9 @@ section {
 /* ========== 页脚 ========== */
 .footer {
     background: var(--primary);
-    border-top: 1px solid var(--border);
+    border-top: 2px solid transparent;
+    border-image: var(--gradient-accent);
+    border-image-slice: 1;
     padding: 60px 0 24px;
 }
 

@@ -218,21 +218,15 @@ function initParticles() {
 // ========== 平滑滚动 ==========
 function initSmoothScroll() {
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        // 跳过圆点导航链接（由 initProductSidebar 处理）
+        if (anchor.classList.contains('dot-link')) return;
         anchor.addEventListener('click', function (e) {
             const href = this.getAttribute('href');
-
             if (href === '#') return;
-
             const target = document.querySelector(href);
             if (target) {
                 e.preventDefault();
-
-                const targetPosition = target.offsetTop;
-
-                window.scrollTo({
-                    top: targetPosition,
-                    behavior: 'smooth',
-                });
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
             }
         });
     });
@@ -455,9 +449,10 @@ function initProductSidebar() {
     dots.forEach(function(d) {
         d.addEventListener('click', function(e) {
             e.preventDefault();
-            var target = document.querySelector(this.getAttribute('href'));
+            var id = this.getAttribute('href').replace('#', '');
+            var target = document.getElementById(id);
             if (target) {
-                target.scrollIntoView({ behavior: 'smooth' });
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
             }
         });
     });
